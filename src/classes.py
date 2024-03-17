@@ -1,24 +1,32 @@
 class Category:
     """Класс принимающий на вход название категории её описание
      содержит в себе список объектов попадающих в эту категорию"""
-    number_categoryes = 0
+    name: str
+    description: str
+    products: list
 
-    def __init__(self, name, description):
+    number_categories = 0
+    number_products = 0
+
+    def __init__(self, name, description, products):
         self.name = name
         self.description = description
-        self.products = []
+        self.products = products
 
-        Category.number_categoryes += 1
+        Category.number_categories += 1
+        Category.number_products += len(self.products)
 
     def add_product(self, obj: object):
         self.products.append(obj)
-
-    def numbers_products(self):
-        return len(self.products)
+        Category.number_products += len(self.products)
 
 class Product:
     """Класс принимающий на вход название, описание товара, цену
     и количество в наличии"""
+    name: str
+    description: str
+    price: float
+    quantity: int
     def __init__(self, name, description, price, quantity):
         self.name = name
         self.description = description
