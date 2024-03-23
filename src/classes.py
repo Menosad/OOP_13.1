@@ -1,39 +1,41 @@
 class Category:
     """Класс принимающий на вход название категории её описание
      содержит в себе список объектов попадающих в эту категорию"""
-    name: str
-    description: str
-    products: list
 
     number_categories = 0
     number_products = 0
 
-    def __init__(self, name, description, products):
+    def __init__(self, name: str, description: str, products: list):
         self.name = name
         self.description = description
-        self._products = products
+        self.__products = products
 
         Category.number_categories += 1
-        Category.number_products += len(self._products)
+        Category.number_products += len(self.__products)
 
-    def add_product(self, prod):
+    @property
+    def products(self):
+        return self.__products
+
+    @products.setter
+    def products(self, prod):
         repetitions = 0
-        for obj in self._products:
+        for obj in self.__products:
             if obj.name == prod.name:
                 if obj.price < prod.price:
                     obj.price = prod.price
                 obj.quantity += prod.quantity
                 repetitions += 1
-        if repetitions == len(self._products):
-            self._products.append(prod)
+        if repetitions == 0:
+            self.__products.append(prod)
             Category.number_products += 1
 
     @property
-    def get_product_list(self):
+    def product_list(self):
         """Получение списка продуктов с указанием каждого продукта
         на отдельной строке"""
         str_line = ''
-        for obj in self._products:
+        for obj in self.__products:
             str_line += f"{obj.name}, {obj.price} руб. Остаток: {obj.quantity} шт.\n"
         return str_line
 
@@ -41,30 +43,34 @@ class Category:
 class Product:
     """Класс принимающий на вход название, описание товара, цену
     и количество в наличии"""
-    name: str
-    description: str
-    price: float
-    quantity: int
-    def __init__(self, name, description, price, quantity):
+
+    def __init__(self, name: str, description: str, price: int, quantity: int):
         self.name = name
         self.description = description
-        self.price = price
+        self.__price = price
         self.quantity = quantity
 
     @classmethod
-    def from_string(cls, new_str):
-        """Метод создающий объект класса из строки:
-        название-описание-цена-количество"""
-        name, description, price, quantity = new_str.split('-')
-        return cls(name, description, price, quantity)
+    def new_product(cls, name, description, price, quantity, categ_obj=None):
+        """Метод создающий объект класса"""
+        prod = cls(name, description, price, quantity)
+        if categ_obj is None:
+            return prod
+        else:
+            categ_obj.products = prod
+        return prod
 
     @property
-    def get_price(self):
-        return self.price
+    def price(self):
+        return self.__price
 
-    @get_price.setter
-    def get_price(self, price: int):
-        if int(price) > 0:
-            self.price = int(price)
-        else:
-            print(f"Цена указана не корректно")
+    @price.setter
+    def price(self, value):
+        self.__price = value
+
+    @price.setter
+    def price(self, value):
+        if value > self.__price:
+            self.__price = value
+        elif value <= 0:
+            print('Цена указана не корректно')
