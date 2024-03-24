@@ -19,16 +19,14 @@ class Category:
 
     @products.setter
     def products(self, prod):
-        repetitions = 0
         for obj in self.__products:
             if obj.name == prod.name:
                 if obj.price < prod.price:
                     obj.price = prod.price
                 obj.quantity += prod.quantity
-                repetitions += 1
-        if repetitions == 0:
-            self.__products.append(prod)
-            Category.number_products += 1
+                return
+        self.__products.append(prod)
+        Category.number_products += 1
 
     @property
     def product_list(self):

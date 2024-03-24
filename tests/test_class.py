@@ -50,9 +50,9 @@ def test_category_list(categ2, prod2, prod3, prod4, prod6):
     categ2.products = prod6
     assert categ2.products == [prod2, prod3, prod4, prod6]
 
-def test_add_product(categ1, prod1):
-    categ1.products = prod1
-    assert categ1.number_products == 5
+def test_add_product(categ2, prod1):
+    categ2.products = prod1
+    assert categ2.number_products == 4
 
 
 def test_add_product2(categ2, prod5, prod6):
