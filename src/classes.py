@@ -13,6 +13,12 @@ class Category:
         Category.number_categories += 1
         Category.number_products += len(self.__products)
 
+    def __len__(self):
+        return len(self.__products)
+
+    def __str__(self):
+        return f"{self.name}, количество продуктов: {len(self)} шт."
+
     @property
     def products(self):
         return self.__products
@@ -32,10 +38,8 @@ class Category:
     def product_list(self):
         """Получение списка продуктов с указанием каждого продукта
         на отдельной строке"""
-        str_line = ''
         for obj in self.__products:
-            str_line += f"{obj.name}, {obj.price} руб. Остаток: {obj.quantity} шт.\n"
-        return str_line
+            print(obj)
 
 
 class Product:
@@ -47,6 +51,17 @@ class Product:
         self.description = description
         self.__price = price
         self.quantity = quantity
+
+    def __repr__(self):
+        return f"{self.__class__.name} ('{self.name}', '{self.description}', {self.__price}, {self.quantity})"
+
+    def __str__(self):
+        return f"{self.name}, {self.__price} руб. Остаток: {self.quantity} шт."
+
+    def __add__(self, other):
+        self_summ = self.quantity * self.__price
+        other_summ = other.quantity * other.__price
+        return self_summ + other_summ
 
     @classmethod
     def new_product(cls, name, description, price, quantity, categ_obj=None):
@@ -72,3 +87,21 @@ class Product:
             self.__price = value
         elif value <= 0:
             print('Цена указана не корректно')
+
+
+class New_Class:
+
+    def __init__(self, category, stop):
+        self.category = category
+        self.stop = stop
+
+    def __iter__(self):
+        self.current_value = -1
+        return self
+
+    def __next__(self):
+        if self.current_value + 1 < self.stop:
+            self.current_value += 1
+            return self.category.__products[self.current_value]
+        else:
+            raise StopIteration
