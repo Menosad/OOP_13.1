@@ -89,7 +89,7 @@ class Product:
             print('Цена указана не корректно')
 
 
-class New_Class:
+class NewClass:
 
     def __init__(self, category, stop):
         self.category = category
@@ -102,6 +102,6 @@ class New_Class:
     def __next__(self):
         if self.current_value + 1 < self.stop:
             self.current_value += 1
-            return self.category.__products[self.current_value]
+            return self.category.products[self.current_value]
         else:
             raise StopIteration
