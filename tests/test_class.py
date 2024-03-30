@@ -4,6 +4,7 @@ import src.classes
 
 @pytest.fixture
 def categ1():
+    src.classes.Category.products = []
     return src.classes.Category('fruit', 'фрукты', [])
 
 
