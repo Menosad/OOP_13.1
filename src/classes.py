@@ -29,14 +29,17 @@ class Category:
 
     @products.setter
     def products(self, prod):
-        for obj in self.__products:
-            if obj.name == prod.name:
-                if obj.price < prod.price:
-                    obj.price = prod.price
-                obj.quantity += prod.quantity
-                return
-        self.__products.append(prod)
-        Category.number_products += 1
+        if issubclass(prod.__class__, Product):
+            for obj in self.__products:
+                if obj.name == prod.name:
+                    if obj.price < prod.price:
+                        obj.price = prod.price
+                    obj.quantity += prod.quantity
+                    return
+            self.__products.append(prod)
+            Category.number_products += 1
+        else:
+            raise TypeError
 
     @property
     def product_list(self):

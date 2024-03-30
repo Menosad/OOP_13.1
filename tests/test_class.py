@@ -30,6 +30,8 @@ def prod4():
 
 @pytest.fixture
 def categ2(prod2, prod3, prod4):
+    # src.classes.Category.number_categories = 1
+    # src.classes.Category.number_products = 3
     return src.classes.Category('mobilniki', 'mobile phones', [prod2, prod3, prod4])
 
 
