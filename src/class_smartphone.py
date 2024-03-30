@@ -1,11 +1,11 @@
-from classes import Category
+from classes import Product
 
 
-class Smartphone(Category):
+class Smartphone(Product):
 
-    def __init__(self, name, description, products, performance, model,
-                 memory, color):
-        super().__init__(name, description, products)
+    def __init__(self, name, description, price, quantity,
+                 performance, model, memory, color):
+        super().__init__(name, description, price, quantity)
         self.performance = performance
         self.model = model
         self.memory = memory
