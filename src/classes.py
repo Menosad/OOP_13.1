@@ -1,3 +1,6 @@
+from abc_class import ABCProduct
+
+
 class Category:
     """Класс принимающий на вход название категории её описание
      содержит в себе список объектов попадающих в эту категорию"""
@@ -46,10 +49,10 @@ class Category:
         """Получение списка продуктов с указанием каждого продукта
         на отдельной строке"""
         for obj in self.__products:
-            print(obj)
+            return f"{obj}"
 
 
-class Product:
+class Product(ABCProduct):
     """Класс принимающий на вход название, описание товара, цену
     и количество в наличии"""
 
@@ -60,7 +63,7 @@ class Product:
         self.quantity = quantity
 
     def __repr__(self):
-        return f"{self.__class__.name} ('{self.name}', '{self.description}', {self.__price}, {self.quantity})"
+        return f"{self.__class__.__name__} ('{self.name}', '{self.description}', {self.__price}, {self.quantity})"
 
     def __str__(self):
         return f"{self.name}, {self.__price} руб. Остаток: {self.quantity} шт."
