@@ -1,7 +1,8 @@
 from src.classes import Product, Category
+from mixin_class import MixinRepr
 
 
-class Smartphone(Product):
+class Smartphone(MixinRepr, Product):
     performance: float
     model: str
     memory: str
@@ -37,3 +38,9 @@ sm2 = Smartphone('Samsung', 'norm', 32_000, 5, 3.7,
                       'Galaxy', '5 Tb', 'black')
 
 print(Category.number_products)
+
+smart1 = Smartphone('Samsung', 'norm', 32_000, 5, 3.7,
+                      'Galaxy', '5 Tb', 'black')
+
+print(repr(smart1))
+

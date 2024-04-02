@@ -1,7 +1,7 @@
-from abc_class import ABCProduct
+from abc_class import ABCProduct, AbstractOrder
 
 
-class Category:
+class Category(AbstractOrder):
     """Класс принимающий на вход название категории её описание
      содержит в себе список объектов попадающих в эту категорию"""
 
@@ -61,9 +61,10 @@ class Product(ABCProduct):
         self.description = description
         self.__price = price
         self.quantity = quantity
+        super().__repr__()
 
-    def __repr__(self):
-        return f"{self.__class__.__name__} ('{self.name}', '{self.description}', {self.__price}, {self.quantity})"
+    # def __repr__(self):
+    #     return f"{self.__class__.__name__} ('{self.name}', '{self.description}', {self.__price}, {self.quantity})"
 
     def __str__(self):
         return f"{self.name}, {self.__price} руб. Остаток: {self.quantity} шт."
