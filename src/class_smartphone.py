@@ -30,17 +30,9 @@ class Smartphone(MixinRepr, Product):
         else:
             return TypeError
 
-
-sm1 = Smartphone('Apple', 'best', 60_000, 2, 4,
-                 'Iphone500', '10 Tb', 'white')
-
-sm2 = Smartphone('Samsung', 'norm', 32_000, 5, 3.7,
-                      'Galaxy', '5 Tb', 'black')
-
-print(Category.number_products)
-
 smart1 = Smartphone('Samsung', 'norm', 32_000, 5, 3.7,
                       'Galaxy', '5 Tb', 'black')
 
-print(repr(smart1))
+
+
 

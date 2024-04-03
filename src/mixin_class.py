@@ -1,8 +1,8 @@
 
 class MixinRepr:
 
-    # def __init__(self):
-    #     self.__repr__()
+    def __init__(self):
+        print(repr(self))
 
     def __repr__(self):
         lst = []
