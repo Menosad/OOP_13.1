@@ -4,7 +4,7 @@ from abc import ABC, abstractmethod
 class ABCProduct(ABC):
 
     @abstractmethod
-    def price(self):
+    def new_product(self, name, description, price, quantity, cat_obj=None):
         pass
 
 

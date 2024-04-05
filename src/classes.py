@@ -1,4 +1,8 @@
-class Category:
+from abc_class import ABCProduct, AbstractOrder
+from mixin_class import MixinRepr
+
+
+class Category(AbstractOrder):
     """Класс принимающий на вход название категории её описание
      содержит в себе список объектов попадающих в эту категорию"""
 
@@ -46,10 +50,10 @@ class Category:
         """Получение списка продуктов с указанием каждого продукта
         на отдельной строке"""
         for obj in self.__products:
-            print(obj)
+            return f"{obj}"
 
 
-class Product:
+class Product(MixinRepr, ABCProduct):
     """Класс принимающий на вход название, описание товара, цену
     и количество в наличии"""
 
@@ -58,9 +62,7 @@ class Product:
         self.description = description
         self.__price = price
         self.quantity = quantity
-
-    def __repr__(self):
-        return f"{self.__class__.name} ('{self.name}', '{self.description}', {self.__price}, {self.quantity})"
+        super().__init__()
 
     def __str__(self):
         return f"{self.name}, {self.__price} руб. Остаток: {self.quantity} шт."
