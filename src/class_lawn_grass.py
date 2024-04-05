@@ -1,4 +1,4 @@
-from src.classes import  Product, Category
+from src.classes import Product, Category
 
 
 class LawnGrass(Product):
@@ -26,3 +26,8 @@ class LawnGrass(Product):
             return self_summ + other_summ
         else:
             return TypeError
+
+
+gras1 = LawnGrass('Russian grass', 'good grass', 500, 1000, 'Russian',
+                  2, 'green')
+

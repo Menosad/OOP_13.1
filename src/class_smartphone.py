@@ -1,4 +1,5 @@
 from src.classes import Product, Category
+from mixin_class import MixinRepr
 
 
 class Smartphone(Product):
@@ -29,11 +30,9 @@ class Smartphone(Product):
         else:
             return TypeError
 
-
-sm1 = Smartphone('Apple', 'best', 60_000, 2, 4,
-                 'Iphone500', '10 Tb', 'white')
-
-sm2 = Smartphone('Samsung', 'norm', 32_000, 5, 3.7,
+smart1 = Smartphone('Samsung', 'norm', 32_000, 5, 3.7,
                       'Galaxy', '5 Tb', 'black')
 
-print(Category.number_products)
+
+
+

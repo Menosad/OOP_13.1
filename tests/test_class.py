@@ -86,7 +86,8 @@ def test_new_product(categ2):
 
 def test_get_products_list(categ2):
     categ2.product_list
-    assert '''samsung, 15000 руб. Остаток: 3 шт.\nxiaomi, 10000 руб. Остаток: 5 шт.\niphone, 50000 руб. Остаток: 1 шт.\n'''
+    assert '''samsung, 15000 руб. Остаток: 3 шт.\nxiaomi, 10000 руб. Остаток: 5 шт.\niphone, 50000 руб. Остаток: 1 
+    шт.\n'''
 
 
 def test_init_product(prod1):
