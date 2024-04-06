@@ -29,10 +29,14 @@ class Category(AbstractOrder):
 
     @property
     def products(self):
+        """Геттер возвращает список продуктов"""
         return self.__products
 
     @products.setter
     def products(self, prod):
+        """Добавляет продукт в список продуктов, если такой продукт уже есть в списке
+        и цена нового продукта выше, то устанавливается цена нового продукта
+        :объект.products = объект"""
         if issubclass(prod.__class__, Product):
             for obj in self.__products:
                 if obj.name == prod.name:
@@ -43,7 +47,7 @@ class Category(AbstractOrder):
             self.__products.append(prod)
             Category.number_products += 1
         else:
-            raise TypeError
+            raise TypeError('Класс добавляемого объекта не входит в семейтво классов Product')
 
     @property
     def product_list(self):
@@ -96,21 +100,3 @@ class Product(MixinRepr, ABCProduct):
             self.__price = value
         elif value <= 0:
             print('Цена указана не корректно')
-
-
-class NewClass:
-
-    def __init__(self, category, stop):
-        self.category = category
-        self.stop = stop
-
-    def __iter__(self):
-        self.current_value = -1
-        return self
-
-    def __next__(self):
-        if self.current_value + 1 < self.stop:
-            self.current_value += 1
-            return self.category.products[self.current_value]
-        else:
-            raise StopIteration
