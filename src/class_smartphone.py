@@ -1,8 +1,7 @@
 from src.classes import Product, Category
-from mixin_class import MixinRepr
-
 
 class Smartphone(Product):
+    """Класс для создания продуктов различных смартфонов"""
     performance: float
     model: str
     memory: str
@@ -29,10 +28,3 @@ class Smartphone(Product):
             return self_summ + other_summ
         else:
             return TypeError
-
-smart1 = Smartphone('Samsung', 'norm', 32_000, 5, 3.7,
-                      'Galaxy', '5 Tb', 'black')
-
-
-
-
