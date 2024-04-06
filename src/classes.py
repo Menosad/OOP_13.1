@@ -1,8 +1,8 @@
-from abc_class import ABCProduct, AbstractOrder
 from mixin_class import MixinRepr
+from abc_class import ABCProduct
 
 
-class Category(AbstractOrder):
+class Category:
     """Класс принимающий на вход название категории её описание
      содержит в себе список объектов попадающих в эту категорию"""
 
@@ -32,6 +32,16 @@ class Category(AbstractOrder):
         """Геттер возвращает список продуктов"""
         return self.__products
 
+    def avg_price(self):
+        try:
+            result = 0
+            for prod in self.__products:
+                amount = prod.price * prod.quantity
+                result += amount
+            return result
+        except ZeroDivisionError:
+            return 0
+
     @products.setter
     def products(self, prod):
         """Добавляет продукт в список продуктов, если такой продукт уже есть в списке
@@ -44,6 +54,8 @@ class Category(AbstractOrder):
                         obj.price = prod.price
                     obj.quantity += prod.quantity
                     return
+            if prod.quantity == 0:
+                raise ValueError('Товар с нулевым количеством не может быть добавлен')
             self.__products.append(prod)
             Category.number_products += 1
         else:
@@ -53,8 +65,11 @@ class Category(AbstractOrder):
     def product_list(self):
         """Получение списка продуктов с указанием каждого продукта
         на отдельной строке"""
+        line = ''
         for obj in self.__products:
-            return f"{obj}"
+            obj_str = f"{obj}"
+            line += obj_str + '\n'
+        return line
 
 
 class Product(MixinRepr, ABCProduct):
@@ -100,3 +115,13 @@ class Product(MixinRepr, ABCProduct):
             self.__price = value
         elif value <= 0:
             print('Цена указана не корректно')
+
+
+prod2 = Product('продукт2', 'описание2', 15, 3)
+prod1 = Product('продукт', 'описание', 10, 4)
+caat1 = Category('категория', 'описание категории', [])
+
+caat1.products = prod1
+caat1.products = prod2
+print(caat1.product_list)
+print(caat1.avg_price())

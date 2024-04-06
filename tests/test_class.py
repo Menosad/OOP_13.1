@@ -118,4 +118,4 @@ def test_string_repr_category(categ1, categ2):
 
 
 def test_plus_product(prod2, prod5):
-    assert prod2 + prod5 == 45000 + 100_000
+    assert prod2 + prod5 == 45_000 + 100_000
