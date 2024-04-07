@@ -1,5 +1,6 @@
 from src.classes import Product, Category
 
+
 class Smartphone(Product):
     """Класс для создания продуктов различных смартфонов"""
     performance: float
