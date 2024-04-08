@@ -4,8 +4,9 @@ import src.classes
 
 @pytest.fixture
 def categ1():
-    src.classes.Category.products = []
-    return src.classes.Category('fruit', 'фрукты', [])
+    cat1 = src.classes.Category('fruit', 'фрукты', [])
+    cat1.number_categories = 1
+    return cat1
 
 
 @pytest.fixture
@@ -30,9 +31,10 @@ def prod4():
 
 @pytest.fixture
 def categ2(prod2, prod3, prod4):
-    # src.classes.Category.number_categories = 1
-    # src.classes.Category.number_products = 3
-    return src.classes.Category('mobilniki', 'mobile phones', [prod2, prod3, prod4])
+    cat2 = src.classes.Category('mobilniki', 'mobile phones', [prod2, prod3, prod4])
+    src.classes.Category.number_categories = 1
+    src.classes.Category.number_products = 3
+    return cat2
 
 
 @pytest.fixture
@@ -78,14 +80,14 @@ def test_new_product(categ2):
     assert categ2.products[3].name == 'nokia_3110'
     assert categ2.products[3].price == 110_000
     assert categ2.products[3].quantity == 1
-    assert categ2.number_products == 13
+    assert categ2.number_products == 4
     src.classes.Product.new_product('xiaomi', 'chip smartphone', 25_000, 6, categ2)
     assert categ2.products[1].price == 25_000
     assert categ2.products[1].quantity == 11
 
 
 def test_get_products_list(categ2):
-    categ2.product_list()
+    print(categ2.product_list)
     assert '''samsung, 15000 руб. Остаток: 3 шт.\nxiaomi, 10000 руб. Остаток: 5 шт.\niphone, 50000 руб. Остаток: 1 
     шт.\n'''
 

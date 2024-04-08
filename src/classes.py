@@ -1,5 +1,5 @@
-from mixin_class import MixinRepr
-from abc_class import ABCProduct
+from src.mixin_class import MixinRepr
+from src.abc_class import ABCProduct
 
 
 class Category:
@@ -34,11 +34,9 @@ class Category:
 
     def avg_price(self):
         try:
-            result = 0
-            for prod in self.__products:
-                amount = prod.price * prod.quantity
-                result += amount
-            return result
+            amount_sum = sum(obj.price for obj in self.__products)
+            result_amount = amount_sum / len(self.__products)
+            return round(result_amount, 2)
         except ZeroDivisionError:
             return 0
 
@@ -125,3 +123,4 @@ caat1.products = prod1
 caat1.products = prod2
 print(caat1.product_list)
 print(caat1.avg_price())
+print(Category.number_categories)
