@@ -22,7 +22,7 @@ class Category:
         Category.number_products += len(self.__products)
 
     def __len__(self):
-        return len(self.__products)
+        return sum(obj.quantity for obj in self.__products)
 
     def __str__(self):
         return f"{self.name}, количество продуктов: {len(self)} шт."
@@ -33,9 +33,10 @@ class Category:
         return self.__products
 
     def avg_price(self):
+        """Метод подсчета среднего ценника по Категории"""
         try:
-            amount_sum = sum(obj.price for obj in self.__products)
-            result_amount = amount_sum / len(self.__products)
+            amount_sum = sum(obj.price * obj.quantity for obj in self.__products)
+            result_amount = amount_sum / len(self)
             return round(result_amount, 2)
         except ZeroDivisionError:
             return 0
