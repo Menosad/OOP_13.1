@@ -82,6 +82,7 @@ class Product(MixinRepr, ABCProduct):
         self.quantity = quantity
         super().__init__()
 
+
     def __str__(self):
         return f"{self.name}, {self.__price} руб. Остаток: {self.quantity} шт."
 
@@ -115,13 +116,3 @@ class Product(MixinRepr, ABCProduct):
         elif value <= 0:
             print('Цена указана не корректно')
 
-
-prod2 = Product('продукт2', 'описание2', 15, 3)
-prod1 = Product('продукт', 'описание', 10, 4)
-caat1 = Category('категория', 'описание категории', [])
-
-caat1.products = prod1
-caat1.products = prod2
-print(caat1.product_list)
-print(caat1.avg_price())
-print(Category.number_categories)

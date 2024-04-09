@@ -12,11 +12,11 @@ class Smartphone(Product):
 
     def __init__(self, name, description, __price, quantity,
                  performance: float, model: str, memory: str, color: str):
-        super().__init__(name, description, __price, quantity)
         self.performance = performance
         self.model = model
         self.memory = memory
         self.color = color
+        super().__init__(name, description, __price, quantity)
 
         Smartphone.smartphones.products = self
 
